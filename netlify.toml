@@ -1,0 +1,6 @@
+[build]
+  publish = "public"                    # Frontend build directory
+  functions = "netlify/functions"       # Serverless functions directory
+
+[dev]
+  framework = "static"                  # Specify static framework for local dev

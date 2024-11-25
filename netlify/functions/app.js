@@ -5,7 +5,7 @@ const morgan = require('morgan');
 const winston = require('winston');
 const app = express();
 const port = process.env.PORT || 3001;
-const tokenInfoRoute = require('./routes/tokenInfoRoute');
+const tokenInfoRoute = require('../../routes/tokenInfoRoute');
 
 // Configure Winston logger
 const logger = winston.createLogger({
@@ -27,12 +27,12 @@ app.use(express.json());
 
 
 // Import routes
-const userRoutes = require('./routes/userRoutes');
-const authRoutes = require('./routes/authRoutes');
-const categoryRoutes = require('./routes/categoryRoutes');
-const productRoutes = require('./routes/productRoutes');
-const orderRoutes = require('./routes/orderRoutes');
-const reviewRoutes = require('./routes/reviewRoutes');
+const userRoutes = require('../../routes/userRoutes');
+const authRoutes = require('../../routes/authRoutes');
+const categoryRoutes = require('../../routes/categoryRoutes');
+const productRoutes = require('../../routes/productRoutes');
+const orderRoutes = require('../../routes/orderRoutes');
+const reviewRoutes = require('../../routes/reviewRoutes');
 
 // Auth routes
 app.use('/api/auth', authRoutes);
