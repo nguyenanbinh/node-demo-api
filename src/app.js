@@ -4,8 +4,9 @@ const express = require('express');
 const morgan = require('morgan');
 const winston = require('winston');
 const app = express();
+const router = express.Router();
 const port = process.env.PORT || 3001;
-const tokenInfoRoute = require('../../routes/tokenInfoRoute');
+const tokenInfoRoute = require('./routes/tokenInfoRoute');
 
 // Configure Winston logger
 const logger = winston.createLogger({
@@ -27,12 +28,12 @@ app.use(express.json());
 
 
 // Import routes
-const userRoutes = require('../../routes/userRoutes');
-const authRoutes = require('../../routes/authRoutes');
-const categoryRoutes = require('../../routes/categoryRoutes');
-const productRoutes = require('../../routes/productRoutes');
-const orderRoutes = require('../../routes/orderRoutes');
-const reviewRoutes = require('../../routes/reviewRoutes');
+const userRoutes = require('./routes/userRoutes');
+const authRoutes = require('./routes/authRoutes');
+const categoryRoutes = require('./routes/categoryRoutes');
+const productRoutes = require('./routes/productRoutes');
+const orderRoutes = require('./routes/orderRoutes');
+const reviewRoutes = require('./routes/reviewRoutes');
 
 // Auth routes
 app.use('/api/auth', authRoutes);
@@ -44,9 +45,17 @@ app.use('/api/orders', orderRoutes);
 app.use('/api/reviews', reviewRoutes);
 
 app.use('/api', tokenInfoRoute);
-app.get('/', (req, res) => {
-  throw new Error('Something went wrong9!');
+// app.get('/', (req, res) => {
+//   res.json('Test')
+// });
+
+router.get("/", (req, res) => {
+  res.json({
+    hello: "hi!"
+  });
 });
+
+app.use(`/.netlify/functions/api`, router);
 
 // Middleware to log errors
 app.use((err, req, res, next) => {

@@ -1,6 +1,15 @@
 [build]
-  publish = "public"                    # Frontend build directory
-  functions = "netlify/functions"       # Serverless functions directory
+  command = "npm run build"
+  publish = "dist"
+  functions = "netlify/functions"
 
-[dev]
-  framework = "static"                  # Specify static framework for local dev
+[environment]
+  API_KEY = "your_api_key"
+  NODE_ENV = "production"
+
+[[plugins]]
+  package = "@netlify/plugin-functions-install-core"
+
+[functions]
+  included_files = ["node_modules/.prisma/**", "node_modules/@prisma/**", "prisma/schema.prisma"]
+
