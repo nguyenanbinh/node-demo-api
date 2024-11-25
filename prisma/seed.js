@@ -1,4 +1,4 @@
-require('dotenv').config({ path: '.env.local' }); // Load variables from .env.local
+// require('dotenv').config({ path: '.env.local' }); // Load variables from .env.local
 const { PrismaClient } = require('@prisma/client');
 const { faker } = require('@faker-js/faker');
 const bcrypt = require('bcrypt');
